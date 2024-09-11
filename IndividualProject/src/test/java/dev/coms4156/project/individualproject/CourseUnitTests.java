@@ -16,9 +16,9 @@ import org.springframework.test.context.ContextConfiguration;
 @ContextConfiguration
 public class CourseUnitTests {
   /**
-   * The test course instances used for testing.
+   * A course instance used for testing.
    */
-  public Course testCourse;
+  private Course testCourse;
 
   @BeforeEach
   public void setupCourseForTesting() {

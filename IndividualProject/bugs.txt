@@ -1,0 +1,13 @@
+# Course.java
+
+## Bugs identified by static analyzer:
+* MissingOverride: The method 'toString()' is missing an @Override annotation.
+## Bugs identified manually:
+* The Course() constructor  initializes enrolledStudentCount to a wrong value. Should be 0 but found
+500.
+* The method enrollStudent() returns false regardless of whether the student is successfully
+enrolled. Should check whether the course is already at capacity before trying to enroll a student.
+* The method dropStudent() returns false regardless of whether a student is successfully dropped.
+Should check whether the number of enrolled students is greater than 0 before dropping a student.
+* The method getCourseLocation() returns instructor name instead of course location.
+* The method getInstructorName() returns course location instead of instructor name.

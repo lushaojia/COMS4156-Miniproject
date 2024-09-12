@@ -1,15 +1,14 @@
 package dev.coms4156.project.individualproject;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.HashMap;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ContextConfiguration;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * This class contains the unit tests for the RouteController class.
@@ -22,13 +21,16 @@ public class RouteControllerUnitTests {
    */
   private RouteController routeController;
 
+  /**
+   * Create a file database and a route controller for testing.
+   */
   @BeforeEach
   public void setupForTesting() {
     routeController = new RouteController();
 
-    // Set up a mock database with departmentsMap and course offerings for testing
-    HashMap<String, Department> departmentsMap = new HashMap<>();
-
+    // Set up a database for testing
+    HashMap<String, Department> departmentMap;
+    departmentMap = new HashMap<>();
     HashMap<String, Course> courses = new HashMap<>();
     Course coms1004 = new Course(
         "Adam Cannon",
@@ -49,7 +51,7 @@ public class RouteControllerUnitTests {
         courses,
         "Luca Carloni",
         2700);
-    departmentsMap.put("COMS", comsDepartment);
+    departmentMap.put("COMS", comsDepartment);
 
     courses = new HashMap<String, Course>();
     Course econ3211 = new Course(
@@ -73,10 +75,10 @@ public class RouteControllerUnitTests {
         "Michael Woodford",
         0
     );
-    departmentsMap.put("ECON", econDepartment);
+    departmentMap.put("ECON", econDepartment);
 
     IndividualProjectApplication.myFileDatabase = new MyFileDatabase(1, "");
-    IndividualProjectApplication.myFileDatabase.setMapping(departmentsMap);
+    IndividualProjectApplication.myFileDatabase.setMapping(departmentMap);
   }
 
   /*
@@ -105,8 +107,8 @@ public class RouteControllerUnitTests {
   @Test
   public void indexTest() {
     assertEquals(
-        "Welcome, " +
-            "in order to make an API call direct your browser or Postman to an endpoint "
+        "Welcome, "
+            + "in order to make an API call direct your browser or Postman to an endpoint "
             + "\n\n This can be done using the following format: \n\n http:127.0.0"
             + ".1:8080/endpoint?arg=value",
         routeController.index());
@@ -129,7 +131,10 @@ public class RouteControllerUnitTests {
 
   @Test
   public void retrieveDepartmentNotFoundTest() {
-    ResponseEntity<String> expectedResponse = new ResponseEntity<>("Department Not Found", HttpStatus.NOT_FOUND);
+    ResponseEntity<String> expectedResponse = new ResponseEntity<>(
+        "Department Not Found",
+        HttpStatus.NOT_FOUND
+    );
     ResponseEntity<?> actualResponse = routeController.retrieveDepartment("PSYC");
     assertEquals(expectedResponse.getBody(), actualResponse.getBody());
     assertEquals(expectedResponse.getStatusCode(), actualResponse.getStatusCode());
@@ -158,7 +163,10 @@ public class RouteControllerUnitTests {
 
   @Test
   public void retrieveCourseNotFoundTest() {
-    ResponseEntity<String> expectedResponse = new ResponseEntity<>("Course Not Found", HttpStatus.NOT_FOUND);
+    ResponseEntity<String> expectedResponse = new ResponseEntity<>(
+        "Course Not Found",
+        HttpStatus.NOT_FOUND
+    );
     ResponseEntity<?> actualResponse = routeController.retrieveCourse("ECON", 3212);
     assertEquals(expectedResponse.getBody(), actualResponse.getBody());
     assertEquals(expectedResponse.getStatusCode(), actualResponse.getStatusCode());
@@ -166,8 +174,10 @@ public class RouteControllerUnitTests {
 
   @Test
   public void retrieveCourseDeptNotFoundTest() {
-    ResponseEntity<String> expectedResponse = new ResponseEntity<>("Department Not Found",
-        HttpStatus.NOT_FOUND);
+    ResponseEntity<String> expectedResponse = new ResponseEntity<>(
+        "Department Not Found",
+        HttpStatus.NOT_FOUND
+    );
     ResponseEntity<?> actualResponse = routeController.retrieveCourse("PSYC", 3211);
     assertEquals(expectedResponse.getBody(), actualResponse.getBody());
     assertEquals(expectedResponse.getStatusCode(), actualResponse.getStatusCode());
@@ -556,6 +566,7 @@ public class RouteControllerUnitTests {
     assertEquals(expectedResponse.getBody(), actualResponse.getBody());
     assertEquals(expectedResponse.getStatusCode(), actualResponse.getStatusCode());
   }
+
   @Test
   public void setEnrollmentDeptNotFoundTest() {
     String responseBody = "Department Not Found";

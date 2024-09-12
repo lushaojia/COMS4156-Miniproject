@@ -1,24 +1,23 @@
 package dev.coms4156.project.individualproject;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
+
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 
 /**
  * This class contains the unit tests for the MyFileDatabase class.
  */
-public class MyFileDatabaseTests {
+public class MyFileDatabaseUnitTests {
   /**
    * MyFileDatabase instances used for testing.
    */
@@ -26,6 +25,11 @@ public class MyFileDatabaseTests {
   public static MyFileDatabase invalidObjectFileDatabase;
   public static MyFileDatabase emptyFileDatabase;
 
+  /**
+   * Create the following kinds of MyFileDatabase instances for testing:
+   * a regular one, one with a file containing an invalid object (i.e. not a hash map),
+   * and one with an empty file path.
+   */
   @BeforeAll
   public static void setUpForTesting() {
     // Create a file database with empty file path for testing
@@ -37,7 +41,8 @@ public class MyFileDatabaseTests {
     invalidObject.add("gudetama");
     invalidObject.add("kuromi");
     invalidObject.add("keroppi");
-    try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(invalidObjectFilePath))) {
+    try {
+      ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(invalidObjectFilePath));
       out.writeObject(invalidObject);
       System.out.println("Invalid object for testing has been serialized to file.");
     } catch (IOException e) {

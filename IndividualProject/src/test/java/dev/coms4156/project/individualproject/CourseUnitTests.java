@@ -20,6 +20,9 @@ public class CourseUnitTests {
    */
   private Course testCourse;
 
+  /**
+   * Create a Course instance for testing.
+   */
   @BeforeEach
   public void setupCourseForTesting() {
     testCourse = new Course(

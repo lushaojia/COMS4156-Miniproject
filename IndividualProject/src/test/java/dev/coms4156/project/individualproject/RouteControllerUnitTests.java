@@ -1,6 +1,7 @@
 package dev.coms4156.project.individualproject;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.HashMap;
 import org.junit.jupiter.api.BeforeEach;
@@ -116,17 +117,18 @@ public class RouteControllerUnitTests {
 
   @Test
   public void retrieveDepartmentOkTest() {
-    String responseBody =
+    String expected1 =
         "COMS 1004: "
             + "\nInstructor: Adam Cannon; Location: 417 IAB; Time: 11:40-12:55\n"
             + "COMS 3134: "
             + "\nInstructor: Brian Borowski; Location: 301 URIS; Time: 4:10-5:25\n";
-    ResponseEntity<String> expectedResponse = new ResponseEntity<>(responseBody, HttpStatus.OK);
+    String expected2 = "COMS 3134: "
+        + "\nInstructor: Brian Borowski; Location: 301 URIS; Time: 4:10-5:25\n"
+        + "COMS 1004: "
+        + "\nInstructor: Adam Cannon; Location: 417 IAB; Time: 11:40-12:55\n";
     ResponseEntity<?> actualResponse = routeController.retrieveDepartment("COMS");
-    System.out.println(expectedResponse.getBody());
-    System.out.println(actualResponse.getBody());
-    assertEquals(expectedResponse.getBody(), actualResponse.getBody());
-    assertEquals(expectedResponse.getStatusCode(), actualResponse.getStatusCode());
+    assertTrue(actualResponse.getBody() == expected1 || actualResponse.getBody() == expected2);
+    assertEquals(HttpStatus.OK, actualResponse.getStatusCode());
   }
 
   @Test

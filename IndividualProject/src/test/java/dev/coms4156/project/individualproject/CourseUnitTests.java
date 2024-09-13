@@ -143,6 +143,10 @@ public class CourseUnitTests {
     testCourse.setEnrolledStudentCount(250);
     assertTrue(testCourse.isCourseFull(),
         "Expected course to be full.");
+
+    testCourse.setEnrolledStudentCount(300);
+    assertTrue(testCourse.isCourseFull(),
+        "Expected course to be full.");
   }
 }
 

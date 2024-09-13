@@ -1,0 +1,50 @@
+# Course.java
+
+## Bugs identified by static analyzer:
+* MissingOverride: The method 'toString()' is missing an @Override annotation.
+## Bugs identified manually:
+* The Course() constructor  initializes enrolledStudentCount to a wrong value. Should be 0 but found
+500.
+* The method enrollStudent() returns false regardless of whether the student is successfully
+enrolled. Should check whether the course is already at capacity before trying to enroll a student.
+* The method dropStudent() returns false regardless of whether a student is successfully dropped.
+Should check whether the number of enrolled students is greater than 0 before dropping a student.
+* The method getCourseLocation() returns instructor name instead of course location.
+* The method getInstructorName() returns course location instead of instructor name.
+* The method isCourseFull() returns true when the course is not full and false when it is full.
+
+
+# Department.java
+
+## Bugs identified by static analyzer:
+* UnusedPrivateField: Avoid unused private fields such as 'departmentChair'. The method
+getDepartmentChair() returns "this.departmentChair" as a string instead of the actual department
+chair.
+## Bugs identified manually:
+* The method getNumberOfMajors() returns the negative of this.numberOfMajors.
+* The method dropPersonFromMajor() decreases the number of majors in the department by one even if
+there are no majors in the department.
+* The method toString() returns "result.toString()" instead of the actual result.
+
+
+# RouteController.java
+
+## Bugs identified manually:
+* The method retrieveDepartment() sends a HttpStatus.OK instead of HttpStatus.NOT_FOUND when a
+department is not found in the database, and it sends a HttpStatus.NOT_FOUND instead of HttpStatus
+.OK when it's the other way around.
+* The method retrieveCourse() sends a HttpStatus.FORBIDDEN instead of HttpStatus.OK when a course is
+ found in the database.
+* The method isCourseFull() does not send appropriate response when the given department does not
+exist in the database.
+* The method getMajorCtFromDept() sends a HttpStatus.FORBIDDEN instead of HttpStatus.OK when the
+department does not exist in the database.
+* The method getMajorCountFromDept() sends a response body with the negative of the number of majors
+ in the department.
+* The method findCourseTime() sends a response body with "some time " instead of the actual time.
+* The method handleException() sends a HttpStatus.OK instead of something like
+HttpStatus.INTERNAL_SERVER_ERROR
+* The methods findCourseLocation(), findCourseInstructor(), findCourseTime(), dropStudentFromCourse
+(), setEnrollmentCount(), changeCourseTime(), changeCourseTeacher(), changeCourseLocation() do not
+send appropriate response when the given department does not exist in the database.
+

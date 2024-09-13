@@ -92,9 +92,9 @@ public class MyFileDatabaseUnitTests {
     departmentMap.put("ECON", econDepartment);
     MyFileDatabase database = new MyFileDatabase(1, "");
     database.setMapping(departmentMap);
-    assertEquals("For the ECON department:\n"
-            + "ECON 3211:\n"
-            + "Instructor: Murat Yilmaz; Location: 310 FAY; Time: 4:10-5:25",
+    assertEquals("For the ECON department: \n"
+            + "ECON 3211: \n"
+            + "Instructor: Murat Yilmaz; Location: 310 FAY; Time: 4:10-5:25\n",
         database.toString());
   }
 
@@ -124,9 +124,9 @@ public class MyFileDatabaseUnitTests {
 
   @Test
   public void toStringTest() {
-    assertEquals("For the ECON department:\n"
-            + "ECON 3211:\n"
-            + "Instructor: Murat Yilmaz; Location: 310 FAY; Time: 4:10-5:25",
+    assertEquals("For the ECON department: \n"
+            + "ECON 3211: \n"
+            + "Instructor: Murat Yilmaz; Location: 310 FAY; Time: 4:10-5:25\n",
         fileDatabase.toString());
   }
 
@@ -158,9 +158,10 @@ public class MyFileDatabaseUnitTests {
   @Test
   public void deSerializeObjectFromFileInvalidObjectTypeTest() {
     try {
-      invalidObjectFileDatabase.deSerializeObjectFromFile();
+      HashMap<String, Department> data = invalidObjectFileDatabase.deSerializeObjectFromFile();
     } catch (IllegalArgumentException e) {
       assertTrue(true);
+      return;
     }
     fail();
   }

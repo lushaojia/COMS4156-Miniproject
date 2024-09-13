@@ -5,12 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.doThrow;
 
 import java.util.HashMap;
-import java.util.Objects;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ContextConfiguration;
@@ -254,6 +252,7 @@ public class RouteControllerUnitTests {
         "An Error has occurred",
         HttpStatus.INTERNAL_SERVER_ERROR
     );
+
     ResponseEntity<?> actualResponse = controller.isCourseFull("COMS", 1004);
     assertEquals(expectedResponse.getBody(), actualResponse.getBody());
     assertEquals(expectedResponse.getStatusCode(), actualResponse.getStatusCode());
@@ -638,6 +637,7 @@ public class RouteControllerUnitTests {
   public void setEnrollmentErrorTest() {
     RouteController controller = Mockito.spy(RouteController.class);
     doThrow(new RuntimeException("Test Exception")).when(controller).retrieveCourse("COMS", 1004);
+    
     ResponseEntity<String> expectedResponse = new ResponseEntity<>(
         "An Error has occurred",
         HttpStatus.INTERNAL_SERVER_ERROR

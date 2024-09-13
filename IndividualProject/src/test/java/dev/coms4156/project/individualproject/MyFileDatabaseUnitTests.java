@@ -5,8 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -92,9 +94,9 @@ public class MyFileDatabaseUnitTests {
     departmentMap.put("ECON", econDepartment);
     MyFileDatabase database = new MyFileDatabase(1, "");
     database.setMapping(departmentMap);
-    assertEquals("For the ECON department:\n"
-            + "ECON 3211:\n"
-            + "Instructor: Murat Yilmaz; Location: 310 FAY; Time: 4:10-5:25",
+    assertEquals("For the ECON department: \n"
+            + "ECON 3211: \n"
+            + "Instructor: Murat Yilmaz; Location: 310 FAY; Time: 4:10-5:25\n",
         database.toString());
   }
 
@@ -124,9 +126,9 @@ public class MyFileDatabaseUnitTests {
 
   @Test
   public void toStringTest() {
-    assertEquals("For the ECON department:\n"
-            + "ECON 3211:\n"
-            + "Instructor: Murat Yilmaz; Location: 310 FAY; Time: 4:10-5:25",
+    assertEquals("For the ECON department: \n"
+            + "ECON 3211: \n"
+            + "Instructor: Murat Yilmaz; Location: 310 FAY; Time: 4:10-5:25\n",
         fileDatabase.toString());
   }
 
@@ -158,9 +160,10 @@ public class MyFileDatabaseUnitTests {
   @Test
   public void deSerializeObjectFromFileInvalidObjectTypeTest() {
     try {
-      invalidObjectFileDatabase.deSerializeObjectFromFile();
+      HashMap<String, Department> data = invalidObjectFileDatabase.deSerializeObjectFromFile();
     } catch (IllegalArgumentException e) {
       assertTrue(true);
+      return;
     }
     fail();
   }

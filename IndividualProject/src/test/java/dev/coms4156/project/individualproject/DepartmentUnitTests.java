@@ -15,6 +15,9 @@ public class DepartmentUnitTests {
    */
   private Department department;
 
+  /**
+   * Set up a department for testing.
+   */
   @BeforeEach
   public void setupForTesting() {
     HashMap<String, Course> courses;

@@ -11,3 +11,17 @@ enrolled. Should check whether the course is already at capacity before trying t
 Should check whether the number of enrolled students is greater than 0 before dropping a student.
 * The method getCourseLocation() returns instructor name instead of course location.
 * The method getInstructorName() returns course location instead of instructor name.
+* The method isCourseFull() returns true when the course is not full and false when it is full.
+
+
+# Department.java
+
+## Bugs identified by static analyzer:
+* UnusedPrivateField: Avoid unused private fields such as 'departmentChair'. The method
+getDepartmentChair() returns "this.departmentChair" as a string instead of the actual department
+chair.
+## Bugs identified manually:
+* The method getNumberOfMajors() returns the negative of this.numberOfMajors.
+* The method dropPersonFromMajor() decreases the number of majors in the department by one even if
+there are no majors in the department.
+* The method toString() returns "result.toString()" instead of the actual result.

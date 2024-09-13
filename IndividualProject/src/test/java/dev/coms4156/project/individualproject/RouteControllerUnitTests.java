@@ -190,7 +190,7 @@ public class RouteControllerUnitTests {
   @Test
   public void retrieveCourseDeptNotFoundTest() {
     ResponseEntity<String> expectedResponse = new ResponseEntity<>(
-        "Course Not Found",
+        "Department Not Found",
         HttpStatus.NOT_FOUND
     );
     ResponseEntity<?> actualResponse = routeController.retrieveCourse("PSYC", 3211);
@@ -346,7 +346,7 @@ public class RouteControllerUnitTests {
 
   @Test
   public void findCourseLocationDeptNotFoundTest() {
-    ResponseEntity<String> expectedResponse = new ResponseEntity<>("Course Not Found",
+    ResponseEntity<String> expectedResponse = new ResponseEntity<>("Department Not Found",
         HttpStatus.NOT_FOUND);
     ResponseEntity<?> actualResponse = routeController.findCourseLocation("PSYC", 3211);
     assertEquals(expectedResponse.getBody(), actualResponse.getBody());
@@ -387,7 +387,7 @@ public class RouteControllerUnitTests {
 
   @Test
   public void findCourseInstructorDeptNotFoundTest() {
-    ResponseEntity<String> expectedResponse = new ResponseEntity<>("Course Not Found",
+    ResponseEntity<String> expectedResponse = new ResponseEntity<>("Department Not Found",
         HttpStatus.NOT_FOUND);
     ResponseEntity<?> actualResponse = routeController.findCourseInstructor("PSYC", 3211);
     assertEquals(expectedResponse.getBody(), actualResponse.getBody());
@@ -428,7 +428,7 @@ public class RouteControllerUnitTests {
 
   @Test
   public void findCourseTimeDeptNotFoundTest() {
-    ResponseEntity<String> expectedResponse = new ResponseEntity<>("Course Not Found",
+    ResponseEntity<String> expectedResponse = new ResponseEntity<>("Department Not Found",
         HttpStatus.NOT_FOUND);
     ResponseEntity<?> actualResponse = routeController.findCourseTime("PSYC", 3211);
     assertEquals(expectedResponse.getBody(), actualResponse.getBody());
@@ -580,7 +580,7 @@ public class RouteControllerUnitTests {
 
   @Test
   public void dropStudentFromCourseDeptNotFoundTest() {
-    String responseBody = "Course Not Found";
+    String responseBody = "Department Not Found";
     ResponseEntity<String> expectedResponse = new ResponseEntity<>(responseBody,
         HttpStatus.NOT_FOUND);
     ResponseEntity<?> actualResponse = routeController.dropStudent("PSYC", 1001);
@@ -625,7 +625,7 @@ public class RouteControllerUnitTests {
 
   @Test
   public void setEnrollmentDeptNotFoundTest() {
-    String responseBody = "Course Not Found";
+    String responseBody = "Department Not Found";
     ResponseEntity<String> expectedResponse = new ResponseEntity<>(responseBody,
         HttpStatus.NOT_FOUND);
     ResponseEntity<?> actualResponse = routeController.setEnrollmentCount(
@@ -675,7 +675,7 @@ public class RouteControllerUnitTests {
 
   @Test
   public void changeCourseTimeDeptNotFoundTest() {
-    String responseBody = "Course Not Found";
+    String responseBody = "Department Not Found";
     ResponseEntity<String> expectedResponse = new ResponseEntity<>(responseBody,
         HttpStatus.NOT_FOUND);
     ResponseEntity<?> actualResponse = routeController.changeCourseTime(
@@ -726,7 +726,7 @@ public class RouteControllerUnitTests {
 
   @Test
   public void changeCourseTeacherDeptNotFoundTest() {
-    String responseBody = "Course Not Found";
+    String responseBody = "Department Not Found";
     ResponseEntity<String> expectedResponse = new ResponseEntity<>(responseBody,
         HttpStatus.NOT_FOUND);
     ResponseEntity<?> actualResponse = routeController.changeCourseTeacher(
@@ -777,7 +777,7 @@ public class RouteControllerUnitTests {
 
   @Test
   public void changeCourseLocationDeptNotFoundTest() {
-    String responseBody = "Course Not Found";
+    String responseBody = "Department Not Found";
     ResponseEntity<String> expectedResponse = new ResponseEntity<>(responseBody,
         HttpStatus.NOT_FOUND);
     ResponseEntity<?> actualResponse = routeController.changeCourseLocation(

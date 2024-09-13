@@ -44,8 +44,6 @@ department does not exist in the database.
 * The method findCourseTime() sends a response body with "some time " instead of the actual time.
 * The method handleException() sends a HttpStatus.OK instead of something like
 HttpStatus.INTERNAL_SERVER_ERROR
-
-
 * The methods findCourseLocation(), findCourseInstructor(), findCourseTime(), dropStudentFromCourse
 (), setEnrollmentCount(), changeCourseTime(), changeCourseTeacher(), changeCourseLocation() do not
 send appropriate response when the given department does not exist in the database.
